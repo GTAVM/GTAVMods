@@ -7,11 +7,14 @@ namespace IPL
     public class Menu : Script
     {
         private MenuPool _menuPool;
+        const string ModName = "IPL";
 
         public Menu()
         {
+            CH.Messages.NotifyToLoad(modName: ModName);
+
             _menuPool = new MenuPool();
-            var mainMenu = new UIMenu("IPL", "Load/Unload IPLs");
+            var mainMenu = new UIMenu(ModName, "Load/Unload IPLs");
             _menuPool.Add(mainMenu);
 
             BahamaMamasTeleport(mainMenu);
