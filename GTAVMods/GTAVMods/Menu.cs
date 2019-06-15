@@ -23,11 +23,14 @@ namespace GTAVMods
 		#endregion
 
 		public bool visibility;
+        const string ModName = "GTAVMods";
 
-		public Menu()
+        public Menu()
 		{
-			_menuPool = new MenuPool();
-			var mainMenu = new UIMenu("GTAVMods", "GTAVMods - All in One");
+            CH.Messages.NotifyToLoad(modName: ModName);
+
+            _menuPool = new MenuPool();
+			var mainMenu = new UIMenu(ModName, "GTAVMods - All in One");
 			_menuPool.Add(mainMenu);
 						
 			SpawnKillers2(mainMenu);
