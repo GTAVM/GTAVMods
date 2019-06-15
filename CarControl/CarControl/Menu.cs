@@ -20,12 +20,15 @@ namespace CarControls
 		public bool blinkersAndLight;
 		public bool neonLights;
 		public bool flyThroughWindscreen;
+        const string ModName = "Car Control";
 
-		private MenuPool _menuPool;
+        private MenuPool _menuPool;
 		public Menu()
 		{
-			_menuPool = new MenuPool();
-			var mainMenu = new UIMenu("Car Control", "");
+            CH.Messages.NotifyToLoad(modName: ModName);
+
+            _menuPool = new MenuPool();
+			var mainMenu = new UIMenu(ModName, "");
 			_menuPool.Add(mainMenu);
 
 			BlinkersAndLight(mainMenu);

@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="CarControl.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="NotifyToLoad.cs" />
     <Compile Include="PedandThingsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
