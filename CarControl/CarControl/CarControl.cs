@@ -394,20 +394,6 @@ namespace CarControls
 
 				}
 			}
-			//if (flyThroughWindscreen)
-			//{
-			//	Vehicle v = Game.Player.Character.CurrentVehicle;
-			//	if (v.Driver.CanFlyThroughWindscreen == false)
-			//	{
-			//		v.Driver.CanFlyThroughWindscreen = true;
-			//		UI.Notify("Can fly through windscreen");
-			//	}
-			//	else if (v.Driver.CanFlyThroughWindscreen)
-			//	{
-			//		v.Driver.CanFlyThroughWindscreen = false;
-			//		UI.Notify("Can't fly through windscreen");
-			//	}
-			//}
 		}
 	}
 }

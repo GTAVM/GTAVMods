@@ -54,16 +54,13 @@ namespace CarControls
 
 		private void FlyThroughWindscreen(UIMenu mainMenu)
 		{
-			var newitem = new UIMenuCheckboxItem("FlyThroughWindscreen", false);
+			var newitem = new UIMenuCheckboxItem("Can't Fly Through Windscreen", false);
 			mainMenu.AddItem(newitem);
 			mainMenu.OnCheckboxChange += (sender, item, checked_) =>
 			{
 				if (item == newitem)
                 {
-                    Game.Player.Character.CanFlyThroughWindscreen = checked_;
-					//flyThroughWindscreen = checked_;
-					UI.Notify("~r~FlyThroughWindscreen status: ~b~" + Game.Player.Character.CanFlyThroughWindscreen);
-
+                    Game.Player.Character.CanFlyThroughWindscreen = !checked_;
 				}
 			};
 		}
