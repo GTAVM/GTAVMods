@@ -15,7 +15,7 @@ namespace CH
         static readonly float speed = 40f;
 
         static Ped player = Game.Player.Character;
-
+        
         public static void DriveToWapointPosition(bool toggle)
         {
             if (player.IsInVehicle() && toggle)
