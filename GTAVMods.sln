@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CH", "CH\CH\CH.csproj", "{1573E5FA-0CCB-4469-A32A-08F0A34FC9CF}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TuningDubsta", "TuningDubst
 	ProjectSection(ProjectDependencies) = postProject
 		{C74240A6-48FE-4A46-9E16-6FA7634BA99C} = {C74240A6-48FE-4A46-9E16-6FA7634BA99C}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPLWithMenu", "IPLWithMenu\IPLWithMenu\IPLWithMenu.csproj", "{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -152,11 +154,23 @@ Global
 		{EA0FB5A7-6F52-4B33-A86C-A40C813B3443}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA0FB5A7-6F52-4B33-A86C-A40C813B3443}.Release|x64.ActiveCfg = Release|Any CPU
 		{EA0FB5A7-6F52-4B33-A86C-A40C813B3443}.Release|x64.Build.0 = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Debug|x64.Build.0 = Debug|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release + Examples|Any CPU.ActiveCfg = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release + Examples|Any CPU.Build.0 = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release + Examples|x64.ActiveCfg = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release + Examples|x64.Build.0 = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release|x64.ActiveCfg = Release|Any CPU
+		{032B5F4F-D4CC-4FB7-B79F-6F7277D2B66B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {55B4D31E-587E-4F79-BB50-3B108E525FEB}
+		SolutionGuid = {41F4F11C-8E0E-4C77-A340-2056C3A24FEA}
 	EndGlobalSection
 EndGlobal
