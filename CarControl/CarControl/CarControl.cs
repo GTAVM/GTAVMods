@@ -6,8 +6,17 @@ namespace CarControls
 {
 	class CarControl : Menu
 	{
+        //Left blinker
+        public static Boolean leftblinker = false;
 
-		public CarControl()
+        //Right blinker
+        public static Boolean rightblinker = false;
+
+        //Interior light
+
+        public static Boolean interiorlights = false;
+
+        public CarControl()
 		{
 			//KeyUp += DoorControlEventKeys;
 
@@ -358,15 +367,7 @@ namespace CarControls
 
 		//Emergency Lights = 2 booleans true
 
-		//Left blinker
-		public static Boolean leftblinker = false;
-
-		//Right blinker
-		public static Boolean rightblinker = false;
-
-		//Interior light
-
-		public static Boolean interiorlights = false;
+		
 
 		public void DoorControlEventKeys(object sender, KeyEventArgs e)
 		{
