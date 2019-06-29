@@ -394,30 +394,6 @@ namespace CarControls
 
 				}
 			}
-			if (flyThroughWindscreen)
-			{
-				Vehicle v = Game.Player.Character.CurrentVehicle;
-				if (v.Driver.CanFlyThroughWindscreen == false)
-				{
-
-					v.Driver.CanFlyThroughWindscreen = true;
-					UI.Notify("CanFlyThroughWindscreen = true");
-					UI.ShowSubtitle("Не пристёгнут");
-
-				}
-				else if (v.Driver.CanFlyThroughWindscreen == true)
-				{
-
-					v.Driver.CanFlyThroughWindscreen = false;
-					UI.Notify("CanFlyThroughWindscreen = false");
-					UI.ShowSubtitle("Пристёгнут");
-
-				}
-
-
-
-			}
 		}
-
 	}
 }

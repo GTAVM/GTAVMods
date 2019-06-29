@@ -19,7 +19,7 @@ namespace CarControls
 		public bool engine;
 		public bool blinkersAndLight;
 		public bool neonLights;
-		public bool flyThroughWindscreen;
+		
         const string ModName = "Car Control";
 
         private MenuPool _menuPool;
@@ -54,15 +54,13 @@ namespace CarControls
 
 		private void FlyThroughWindscreen(UIMenu mainMenu)
 		{
-			var newitem = new UIMenuCheckboxItem("FlyThroughWindscreen", flyThroughWindscreen);
+			var newitem = new UIMenuCheckboxItem("Can't Fly Through Windscreen", false);
 			mainMenu.AddItem(newitem);
 			mainMenu.OnCheckboxChange += (sender, item, checked_) =>
 			{
 				if (item == newitem)
-				{
-					flyThroughWindscreen = checked_;
-					UI.Notify("~r~FlyThroughWindscreen status: ~b~" + flyThroughWindscreen);
-
+                {
+                    Game.Player.Character.CanFlyThroughWindscreen = !checked_;
 				}
 			};
 		}

@@ -13,6 +13,41 @@ namespace CH
     {
         static int countCompanions = 0;
 
+        public static void SpawnEnemyPed(string model_name = "ig_bride")
+        {
+            //Spawn the model
+            Ped companion = CreatePedByName(model_name);
+
+            //Set ped properties
+            companion.Armor = 50000;
+            companion.Health = 50000;
+            companion.MaxHealth = 50000;
+            companion.IsEnemy = true;
+            companion.IsPriorityTargetForEnemies = true;
+            companion.RelationshipGroup = 5;
+            companion.CanBeShotInVehicle = true;
+            companion.AlwaysDiesOnLowHealth = false;
+
+            //Give a Weapon to ped
+
+            //Rifle
+            companion.Weapons.Give(WeaponHash.AdvancedRifle, 500, false, true);
+
+            //Colt
+            companion.Weapons.Give(WeaponHash.APPistol, 500, false, true);
+
+            //Parachute
+            companion.Weapons.Give(WeaponHash.Parachute, 1, true, true);
+
+            //KnifeHouse
+
+            companion.Weapons.Give(WeaponHash.Knife, 1, false, true);
+
+            //Set ped into vehicle
+
+            companion.SetIntoVehicle(Game.Player.Character.CurrentVehicle, VehicleSeat.Any);
+        }
+
         public static void ChangePlayerVisibility()
         {
             Game.Player.Character.IsVisible = !Game.Player.Character.IsVisible;
