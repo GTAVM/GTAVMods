@@ -10,8 +10,6 @@ namespace CarControls
 
     public class Menu : Script
     {
-        public bool trunk;
-        public bool frontLeftDoor;
         public bool frontRightDoor;
         public bool backLeftDoor;
         public bool backRightDoor;
@@ -117,29 +115,36 @@ namespace CarControls
                 UI.Notify("~r~Start or Stop engine status: ~b~" + engine);
             };
         }
-        public void BbackRightDoor(UIMenu menu)
+
+        private void BbackRightDoor(UIMenu menu)
         {
-            var newitem = new UIMenuCheckboxItem("Open or close Back Right door", backRightDoor);
+            var newitem = new UIMenuCheckboxItem("Open or close Back Right door", false);
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item != newitem) return;
-                backRightDoor = checked_;
-                UI.Notify("~r~Open or close Back Right door status: ~b~" + backRightDoor);
+                if (!checked_)
+                    vehicle.CloseDoor(BackrightDoor, false);
+                else
+                    vehicle.OpenDoor(BackrightDoor, false, false);
             };
         }
-        public void BackLeftDoor(UIMenu menu)
+
+        private void BackLeftDoor(UIMenu menu)
         {
-            var newitem = new UIMenuCheckboxItem("Open or close Back Left Door", backLeftDoor);
+            var newitem = new UIMenuCheckboxItem("Open or close Back Left Door", false);
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item != newitem) return;
-                backLeftDoor = checked_;
-                UI.Notify("~r~Open or close Back Left Door status: ~b~" + backLeftDoor);
+                if (!checked_)
+                    vehicle.CloseDoor(BackleftDoor, false);
+                else
+                    vehicle.OpenDoor(BackleftDoor, false, false);
             };
         }
-        public void OpenOrCloseHood(UIMenu menu)
+
+        private void OpenOrCloseHood(UIMenu menu)
         {
             var newitem = new UIMenuCheckboxItem("Open or close Hood", false);
             menu.AddItem(newitem);
@@ -152,7 +157,8 @@ namespace CarControls
                     vehicle.CloseDoor(Hood, false);
             };
         }
-        public void OpenOrCloseTrunk(UIMenu menu)
+
+        private void OpenOrCloseTrunk(UIMenu menu)
         {
             var newitem = new UIMenuCheckboxItem("Open or close Trunk", false);
             menu.AddItem(newitem);
@@ -165,7 +171,8 @@ namespace CarControls
                     vehicle.CloseDoor(Trunk, false);
             };
         }
-        public void FrontLeftDoor(UIMenu menu)
+
+        private void FrontLeftDoor(UIMenu menu)
         {
             var newitem = new UIMenuCheckboxItem("Open or close Front Left Door", false);
             menu.AddItem(newitem);
@@ -178,9 +185,10 @@ namespace CarControls
                     vehicle.CloseDoor(FrontleftDoor, false);
             };
         }
-        public void FrontRightDoor(UIMenu menu)
+
+        private void FrontRightDoor(UIMenu menu)
         {
-            var newitem = new UIMenuCheckboxItem("Open or close Front Right door", frontRightDoor);
+            var newitem = new UIMenuCheckboxItem("Open or close Front Right door", false);
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {

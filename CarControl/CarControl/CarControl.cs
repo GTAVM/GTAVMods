@@ -18,25 +18,14 @@ namespace CarControls
 
             //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
             vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
-            if (frontRightDoor)
+             if (backLeftDoor)
             {
                 
-            }
-            //Open or close Back Left Door
-            else if (backLeftDoor)
-            {
-                if (vehicle.IsDoorOpen(BackleftDoor))
-                    vehicle.CloseDoor(BackleftDoor, false);
-                else
-                    vehicle.OpenDoor(BackleftDoor, false, false);
             }
             //Open or close Back Right door
             else if (backRightDoor)
             {
-                if (vehicle.IsDoorOpen(BackrightDoor))
-                    vehicle.CloseDoor(BackrightDoor, false);
-                else
-                    vehicle.OpenDoor(BackrightDoor, false, false);
+                
             }
             //Start or Stop engine
             else if (engine)
