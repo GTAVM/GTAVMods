@@ -17,21 +17,9 @@ namespace CarControls
             Ped player = Game.Player.Character;
 
             //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
+            Vehicle vehicle = null;
 
-            Vehicle v = null;
-
-            if (player.IsInVehicle())
-            {
-
-                v = player.CurrentVehicle;
-
-            }
-            else
-            {
-
-                v = player.LastVehicle;
-
-            }
+            vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
 
             //Car Doors
 
@@ -48,16 +36,16 @@ namespace CarControls
             if (hood)
             {
 
-                if (v.IsDoorOpen(Hood) == true)
+                if (vehicle.IsDoorOpen(Hood) == true)
                 {
 
-                    v.CloseDoor(Hood, false);
+                    vehicle.CloseDoor(Hood, false);
 
                 }
                 else
                 {
 
-                    v.OpenDoor(Hood, false, false);
+                    vehicle.OpenDoor(Hood, false, false);
 
                 }
 
@@ -70,15 +58,15 @@ namespace CarControls
             else if (trunk)
             {
 
-                if (v.IsDoorOpen(Trunk) == true)
+                if (vehicle.IsDoorOpen(Trunk) == true)
                 {
 
-                    v.CloseDoor(Trunk, false);
+                    vehicle.CloseDoor(Trunk, false);
 
                 }
                 else
                 {
-                    v.OpenDoor(Trunk, false, false);
+                    vehicle.OpenDoor(Trunk, false, false);
 
                 }
 
@@ -90,15 +78,15 @@ namespace CarControls
             else if (frontLeftDoor)
             {
 
-                if (v.IsDoorOpen(FrontleftDoor))
+                if (vehicle.IsDoorOpen(FrontleftDoor))
                 {
 
-                    v.CloseDoor(FrontleftDoor, false);
+                    vehicle.CloseDoor(FrontleftDoor, false);
 
                 }
                 else
                 {
-                    v.OpenDoor(FrontleftDoor, false, false);
+                    vehicle.OpenDoor(FrontleftDoor, false, false);
 
                 }
 
@@ -109,15 +97,15 @@ namespace CarControls
             else if (frontRightDoor)
             {
 
-                if (v.IsDoorOpen(FrontrightDoor))
+                if (vehicle.IsDoorOpen(FrontrightDoor))
                 {
 
-                    v.CloseDoor(FrontrightDoor, false);
+                    vehicle.CloseDoor(FrontrightDoor, false);
 
                 }
                 else
                 {
-                    v.OpenDoor(FrontrightDoor, false, false);
+                    vehicle.OpenDoor(FrontrightDoor, false, false);
 
                 }
             }
@@ -126,15 +114,15 @@ namespace CarControls
             else if (backLeftDoor)
             {
 
-                if (v.IsDoorOpen(BackleftDoor))
+                if (vehicle.IsDoorOpen(BackleftDoor))
                 {
 
-                    v.CloseDoor(BackleftDoor, false);
+                    vehicle.CloseDoor(BackleftDoor, false);
 
                 }
                 else
                 {
-                    v.OpenDoor(BackleftDoor, false, false);
+                    vehicle.OpenDoor(BackleftDoor, false, false);
 
                 }
             }
@@ -143,15 +131,15 @@ namespace CarControls
             else if (backRightDoor)
             {
 
-                if (v.IsDoorOpen(BackrightDoor))
+                if (vehicle.IsDoorOpen(BackrightDoor))
                 {
 
-                    v.CloseDoor(BackrightDoor, false);
+                    vehicle.CloseDoor(BackrightDoor, false);
 
                 }
                 else
                 {
-                    v.OpenDoor(BackrightDoor, false, false);
+                    vehicle.OpenDoor(BackrightDoor, false, false);
 
                 }
             }
@@ -161,16 +149,16 @@ namespace CarControls
 
             {
 
-                if (v.EngineRunning == false)
+                if (vehicle.EngineRunning == false)
                 {
 
-                    v.EngineRunning = true;
+                    vehicle.EngineRunning = true;
 
                 }
                 else
                 {
 
-                    v.EngineRunning = false;
+                    vehicle.EngineRunning = false;
 
                 }
 
@@ -182,13 +170,13 @@ namespace CarControls
                 if (player.IsInVehicle())
                 {
 
-                    v = player.CurrentVehicle;
+                    vehicle = player.CurrentVehicle;
 
                 }
                 else
                 {
 
-                    v = player.LastVehicle;
+                    vehicle = player.LastVehicle;
 
                 }
 
@@ -200,8 +188,8 @@ namespace CarControls
                     if (leftblinker == false)
                     {
 
-                        v.RightIndicatorLightOn = false;
-                        v.LeftIndicatorLightOn = true;
+                        vehicle.RightIndicatorLightOn = false;
+                        vehicle.LeftIndicatorLightOn = true;
 
                         leftblinker = true;
                         rightblinker = false;
@@ -210,8 +198,8 @@ namespace CarControls
                     else
                     {
 
-                        v.RightIndicatorLightOn = false;
-                        v.LeftIndicatorLightOn = false;
+                        vehicle.RightIndicatorLightOn = false;
+                        vehicle.LeftIndicatorLightOn = false;
 
                         leftblinker = false;
                         rightblinker = false;
@@ -228,8 +216,8 @@ namespace CarControls
                     if (rightblinker == false)
                     {
 
-                        v.RightIndicatorLightOn = true;
-                        v.LeftIndicatorLightOn = false;
+                        vehicle.RightIndicatorLightOn = true;
+                        vehicle.LeftIndicatorLightOn = false;
 
                         rightblinker = true;
                         leftblinker = false;
@@ -237,8 +225,8 @@ namespace CarControls
                     }
                     else
                     {
-                        v.RightIndicatorLightOn = false;
-                        v.LeftIndicatorLightOn = false;
+                        vehicle.RightIndicatorLightOn = false;
+                        vehicle.LeftIndicatorLightOn = false;
 
                         rightblinker = false;
                         leftblinker = false;
@@ -249,16 +237,16 @@ namespace CarControls
                 {
                     if (rightblinker == false || leftblinker == false)
                     {
-                        v.RightIndicatorLightOn = true;
-                        v.LeftIndicatorLightOn = true;
+                        vehicle.RightIndicatorLightOn = true;
+                        vehicle.LeftIndicatorLightOn = true;
 
                         rightblinker = true;
                         leftblinker = true;
                     }
                     else
                     {
-                        v.RightIndicatorLightOn = false;
-                        v.LeftIndicatorLightOn = false;
+                        vehicle.RightIndicatorLightOn = false;
+                        vehicle.LeftIndicatorLightOn = false;
 
                         rightblinker = false;
                         leftblinker = false;
@@ -271,7 +259,7 @@ namespace CarControls
                     if (interiorlights == false)
                     {
 
-                        v.InteriorLightOn = true;
+                        vehicle.InteriorLightOn = true;
 
                         interiorlights = true;
                         UI.ShowSubtitle("interior light = On");
@@ -279,7 +267,7 @@ namespace CarControls
                     else
                     {
 
-                        v.InteriorLightOn = false;
+                        vehicle.InteriorLightOn = false;
 
                         interiorlights = false;
                         UI.ShowSubtitle("interior light = Off");
@@ -289,28 +277,27 @@ namespace CarControls
             }
             if (neonLights)
             {
-                if (!(v.IsNeonLightsOn(VehicleNeonLight.Back) || v.IsNeonLightsOn(VehicleNeonLight.Front) || v.IsNeonLightsOn(VehicleNeonLight.Left) || v.IsNeonLightsOn(VehicleNeonLight.Right)))
+                if (!(vehicle.IsNeonLightsOn(VehicleNeonLight.Back) || vehicle.IsNeonLightsOn(VehicleNeonLight.Front) || vehicle.IsNeonLightsOn(VehicleNeonLight.Left) || vehicle.IsNeonLightsOn(VehicleNeonLight.Right)))
                 {
 
-                    v.SetNeonLightsOn(VehicleNeonLight.Back, true);
-                    v.SetNeonLightsOn(VehicleNeonLight.Front, true);
-                    v.SetNeonLightsOn(VehicleNeonLight.Left, true);
-                    v.SetNeonLightsOn(VehicleNeonLight.Right, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Back, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Front, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Left, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Right, true);
 
                 }
                 else
                 {
 
-                    v.SetNeonLightsOn(VehicleNeonLight.Back, false);
-                    v.SetNeonLightsOn(VehicleNeonLight.Front, false);
-                    v.SetNeonLightsOn(VehicleNeonLight.Left, false);
-                    v.SetNeonLightsOn(VehicleNeonLight.Right, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Back, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Front, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Left, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Right, false);
 
                 }
             }
-            
-			Vehicle vehicle = null;
-			if (e.KeyCode == Keys.NumPad1)
+
+            if (e.KeyCode == Keys.NumPad1)
 			{
 				if (player.IsInVehicle())
 				{
