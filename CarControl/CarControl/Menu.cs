@@ -84,12 +84,9 @@ namespace CarControls
             mainMenu.AddItem(newitem);
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    neonLights = checked_;
-                    UI.Notify("~r~NeonLights status: ~b~" + neonLights);
-
-                }
+                if (item != newitem) return;
+                neonLights = checked_;
+                UI.Notify("~r~NeonLights status: ~b~" + neonLights);
             };
         }
 
@@ -99,15 +96,13 @@ namespace CarControls
             mainMenu.AddItem(newitem);
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    blinkersAndLight = checked_;
-                    UI.Notify("~r~Turn on Blinkers and interior light status: ~b~" + blinkersAndLight);
-                    UI.ShowSubtitle("Left Blinker - NumPad1\n" +
-                                    "Right Blinker - NumPad3\n" +
-                                    "Emergency Lights - NumPad2\n" +
-                                    "Interior light - NumPad*", 10000);
-                }
+                if (item != newitem) return;
+                blinkersAndLight = checked_;
+                UI.Notify("~r~Turn on Blinkers and interior light status: ~b~" + blinkersAndLight);
+                UI.ShowSubtitle("Left Blinker - NumPad1\n" +
+                                "Right Blinker - NumPad3\n" +
+                                "Emergency Lights - NumPad2\n" +
+                                "Interior light - NumPad*", 10000);
             };
         }
 
@@ -117,11 +112,9 @@ namespace CarControls
             mainMenu.AddItem(newitem);
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    engine = checked_;
-                    UI.Notify("~r~Start or Stop engine status: ~b~" + engine);
-                }
+                if (item != newitem) return;
+                engine = checked_;
+                UI.Notify("~r~Start or Stop engine status: ~b~" + engine);
             };
         }
         public void BbackRightDoor(UIMenu menu)
@@ -130,11 +123,9 @@ namespace CarControls
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    backRightDoor = checked_;
-                    UI.Notify("~r~Open or close Back Right door status: ~b~" + backRightDoor);
-                }
+                if (item != newitem) return;
+                backRightDoor = checked_;
+                UI.Notify("~r~Open or close Back Right door status: ~b~" + backRightDoor);
             };
         }
         public void BackLeftDoor(UIMenu menu)
@@ -143,11 +134,9 @@ namespace CarControls
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    backLeftDoor = checked_;
-                    UI.Notify("~r~Open or close Back Left Door status: ~b~" + backLeftDoor);
-                }
+                if (item != newitem) return;
+                backLeftDoor = checked_;
+                UI.Notify("~r~Open or close Back Left Door status: ~b~" + backLeftDoor);
             };
         }
         public void OpenOrCloseHood(UIMenu menu)
@@ -156,15 +145,11 @@ namespace CarControls
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    
-                    //Open or close Hood
-                    if (checked_)
-                        vehicle.OpenDoor(Hood, false, false);
-                    else
-                        vehicle.CloseDoor(Hood, false);
-                }
+                if (item != newitem) return;
+                if (checked_)
+                    vehicle.OpenDoor(Hood, false, false);
+                else
+                    vehicle.CloseDoor(Hood, false);
             };
         }
         public void OpenOrCloseTrunk(UIMenu menu)
@@ -173,27 +158,24 @@ namespace CarControls
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    if (checked_)
-                        vehicle.OpenDoor(Trunk, false, false);
-                    else
-                        vehicle.CloseDoor(Trunk, false);
-
-                }
+                if (item != newitem) return;
+                if (checked_)
+                    vehicle.OpenDoor(Trunk, false, false);
+                else
+                    vehicle.CloseDoor(Trunk, false);
             };
         }
         public void FrontLeftDoor(UIMenu menu)
         {
-            var newitem = new UIMenuCheckboxItem("Open or close Front Left Door", frontLeftDoor);
+            var newitem = new UIMenuCheckboxItem("Open or close Front Left Door", false);
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    frontLeftDoor = checked_;
-                    UI.Notify("~r~FrontLeftDoor status: ~b~" + frontLeftDoor);
-                }
+                if (item != newitem) return;
+                if (checked_)
+                    vehicle.OpenDoor(FrontleftDoor, false, false);
+                else
+                    vehicle.CloseDoor(FrontleftDoor, false);
             };
         }
         public void FrontRightDoor(UIMenu menu)
@@ -202,11 +184,11 @@ namespace CarControls
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
-                if (item == newitem)
-                {
-                    frontRightDoor = checked_;
-                    UI.Notify("~r~FrontRightDoor status: ~b~" + frontRightDoor);
-                }
+                if (item != newitem) return;
+                if (!checked_)
+                    vehicle.CloseDoor(FrontrightDoor, false);
+                else
+                    vehicle.OpenDoor(FrontrightDoor, false, false);
             };
         }
     }

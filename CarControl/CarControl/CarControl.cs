@@ -17,24 +17,10 @@ namespace CarControls
             player = Game.Player.Character;
 
             //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
-             vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
-
-            //Open or close Front Left Door
-             if (frontLeftDoor)
+            vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
+            if (frontRightDoor)
             {
-                if (vehicle.IsDoorOpen(FrontleftDoor))
-                    vehicle.CloseDoor(FrontleftDoor, false);
-                else
-                    vehicle.OpenDoor(FrontleftDoor, false, false);
-            }
-
-            //Open or close front right door
-            else if (frontRightDoor)
-            {
-                if (vehicle.IsDoorOpen(FrontrightDoor))
-                    vehicle.CloseDoor(FrontrightDoor, false);
-                else
-                    vehicle.OpenDoor(FrontrightDoor, false, false);
+                
             }
             //Open or close Back Left Door
             else if (backLeftDoor)
@@ -142,48 +128,48 @@ namespace CarControls
             switch (e.KeyCode)
             {
                 case Keys.NumPad1:
-                {
-                    if (player.IsInVehicle())
                     {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollDownWindow(VehicleWindow.FrontLeftWindow);
-                    }
+                        if (player.IsInVehicle())
+                        {
+                            vehicle = player.CurrentVehicle;
+                            vehicle.RollDownWindow(VehicleWindow.FrontLeftWindow);
+                        }
 
-                    break;
-                }
+                        break;
+                    }
 
                 case Keys.NumPad3:
-                {
-                    if (player.IsInVehicle())
                     {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
-                    }
+                        if (player.IsInVehicle())
+                        {
+                            vehicle = player.CurrentVehicle;
+                            vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
+                        }
 
-                    break;
-                }
+                        break;
+                    }
 
                 case Keys.NumPad4:
-                {
-                    if (player.IsInVehicle())
                     {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
-                    }
+                        if (player.IsInVehicle())
+                        {
+                            vehicle = player.CurrentVehicle;
+                            vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
+                        }
 
-                    break;
-                }
+                        break;
+                    }
 
                 case Keys.NumPad6:
-                {
-                    if (player.IsInVehicle())
                     {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
-                    }
+                        if (player.IsInVehicle())
+                        {
+                            vehicle = player.CurrentVehicle;
+                            vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
     }
