@@ -6,15 +6,9 @@ namespace CarControls
 {
 	class CarControl : Menu
 	{
-        //Left blinker
-        public static Boolean leftblinker = false;
-
-        //Right blinker
-        public static Boolean rightblinker = false;
-
-        //Interior light
-
-        public static Boolean interiorlights = false;
+        public static bool leftblinker;
+        public static bool rightblinker;
+        public static bool interiorlights;
 
         public CarControl() => KeyDown += CarControl_KeyDown;
 		
