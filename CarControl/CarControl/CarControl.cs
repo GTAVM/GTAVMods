@@ -80,51 +80,52 @@ namespace CarControls
                 }
             }
 
+            if (!powerWindowsControl) return;
             switch (e.KeyCode)
             {
                 case Keys.NumPad1:
+                {
+                    if (player.IsInVehicle())
                     {
-                        if (player.IsInVehicle())
-                        {
-                            vehicle = player.CurrentVehicle;
-                            vehicle.RollDownWindow(VehicleWindow.FrontLeftWindow);
-                        }
-
-                        break;
+                        vehicle = player.CurrentVehicle;
+                        vehicle.RollDownWindow(VehicleWindow.FrontLeftWindow);
                     }
+
+                    break;
+                }
 
                 case Keys.NumPad3:
+                {
+                    if (player.IsInVehicle())
                     {
-                        if (player.IsInVehicle())
-                        {
-                            vehicle = player.CurrentVehicle;
-                            vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
-                        }
-
-                        break;
+                        vehicle = player.CurrentVehicle;
+                        vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
                     }
+
+                    break;
+                }
 
                 case Keys.NumPad4:
+                {
+                    if (player.IsInVehicle())
                     {
-                        if (player.IsInVehicle())
-                        {
-                            vehicle = player.CurrentVehicle;
-                            vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
-                        }
-
-                        break;
+                        vehicle = player.CurrentVehicle;
+                        vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
                     }
+
+                    break;
+                }
 
                 case Keys.NumPad6:
+                {
+                    if (player.IsInVehicle())
                     {
-                        if (player.IsInVehicle())
-                        {
-                            vehicle = player.CurrentVehicle;
-                            vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
-                        }
-
-                        break;
+                        vehicle = player.CurrentVehicle;
+                        vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
                     }
+
+                    break;
+                }
             }
         }
     }
