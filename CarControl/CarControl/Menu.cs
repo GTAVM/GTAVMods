@@ -11,7 +11,8 @@ namespace CarControls
     public class Menu : Script
     {
         public bool blinkersAndLight;
-       
+        public bool powerWindowsControl;
+
         protected VehicleDoor Hood = VehicleDoor.Hood;
         protected VehicleDoor Trunk = VehicleDoor.Trunk;
         protected VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
@@ -43,6 +44,7 @@ namespace CarControls
             Engine(mainMenu);
             NeonLights(mainMenu);
             FlyThroughWindscreen(mainMenu);
+            PowerWindowsControl(mainMenu);
 
             _menuPool.RefreshIndex();
 
@@ -78,37 +80,57 @@ namespace CarControls
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item != newitem) return;
-               
-                    if (checked_)
-                    {
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Back, true);
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Front, true);
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Left, true);
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Right, true);
-                    }
-                    else
-                    {
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Back, false);
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Front, false);
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Left, false);
-                        vehicle.SetNeonLightsOn(VehicleNeonLight.Right, false);
-                    }
+
+                if (checked_)
+                {
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Back, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Front, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Left, true);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Right, true);
+                }
+                else
+                {
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Back, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Front, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Left, false);
+                    vehicle.SetNeonLightsOn(VehicleNeonLight.Right, false);
+                }
             };
         }
 
         private void BlinkersAndLight(UIMenu mainMenu)
         {
-            var newitem = new UIMenuCheckboxItem("Turn on Blinkers and interior light", blinkersAndLight);
+            var newitem = new UIMenuCheckboxItem("Turn on Blinkers and interior light", false);
             mainMenu.AddItem(newitem);
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item != newitem) return;
+
                 blinkersAndLight = checked_;
-                UI.Notify("~r~Turn on Blinkers and interior light status: ~b~" + blinkersAndLight);
+                
+                if(!checked_) return;
                 UI.ShowSubtitle("Left Blinker - NumPad1\n" +
                                 "Right Blinker - NumPad3\n" +
                                 "Emergency Lights - NumPad2\n" +
                                 "Interior light - NumPad*", 10000);
+            };
+        }
+
+        private void PowerWindowsControl(UIMenu mainMenu)
+        {
+            var newitem = new UIMenuCheckboxItem("Power windows control", false);
+            mainMenu.AddItem(newitem);
+            mainMenu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item != newitem) return;
+
+                powerWindowsControl = checked_;
+
+                if (!checked_) return;
+                UI.ShowSubtitle("Down Front Left Window - NumPad1\n" +
+                                "Down Front Right Window - NumPad3\n" +
+                                "Up Front Left Window - NumPad4\n" +
+                                "Up Front Right Window - NumPad6", 10000);
             };
         }
 
@@ -120,7 +142,7 @@ namespace CarControls
             {
                 if (item != newitem) return;
                 //if (!player.IsInVehicle())
-                    vehicle.EngineRunning = checked_;
+                vehicle.EngineRunning = checked_;
             };
         }
 
