@@ -112,7 +112,7 @@ namespace CarControls
                 UI.ShowSubtitle("Left Blinker - NumPad1\n" +
                                 "Right Blinker - NumPad3\n" +
                                 "Emergency Lights - NumPad2\n" +
-                                "Interior light - NumPad*", 10000);
+                                "Interior light - Decimal", 10000);
             };
         }
 

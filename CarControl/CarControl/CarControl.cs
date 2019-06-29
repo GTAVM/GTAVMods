@@ -71,17 +71,15 @@ namespace CarControls
                         rightblinker = false;
                         leftblinker = false;
                         break;
-                    case Keys.Multiply when interiorlights == false:
+                    case Keys.Decimal when interiorlights == false:
                         vehicle.InteriorLightOn = true;
 
                         interiorlights = true;
-                        UI.ShowSubtitle("interior light = On");
                         break;
-                    case Keys.Multiply:
+                    case Keys.Decimal:
                         vehicle.InteriorLightOn = false;
 
                         interiorlights = false;
-                        UI.ShowSubtitle("interior light = Off");
                         break;
                 }
             }
@@ -95,55 +93,46 @@ namespace CarControls
 
                     _frontLeftWindowUp = true;
                     break;
-
                 case Keys.NumPad4:
                     vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
 
                     _frontLeftWindowUp = false;
                     break;
-
                 case Keys.NumPad6 when _frontRightWindowUp == false:
                     vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
 
                     _frontRightWindowUp = true;
                     break;
-
                 case Keys.NumPad6:
                     vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
 
                     _frontRightWindowUp = false;
                     break;
-
                 case Keys.NumPad7 when _backLeftWindowUp == false:
                     vehicle.RollDownWindow(VehicleWindow.BackLeftWindow);
 
                     _backLeftWindowUp = true;
                     break;
-
                 case Keys.NumPad7:
                     vehicle.RollUpWindow(VehicleWindow.BackLeftWindow);
 
                     _backLeftWindowUp = false;
                     break;
-
                 case Keys.NumPad9 when _backRightWindowUp == false:
                     vehicle.RollDownWindow(VehicleWindow.BackRightWindow);
 
                     _backRightWindowUp = true;
                     break;
-
                 case Keys.NumPad9:
                     vehicle.RollUpWindow(VehicleWindow.BackRightWindow);
 
                     _backRightWindowUp = false;
                     break;
-
                 case Keys.NumPad5 when _allWindowsUp == false:
                     vehicle.RollDownWindows();
 
                     _allWindowsUp = true;
                     break;
-
                 case Keys.NumPad5:
                     vehicle.RollUpWindow(VehicleWindow.BackRightWindow);
                     vehicle.RollUpWindow(VehicleWindow.BackLeftWindow);
