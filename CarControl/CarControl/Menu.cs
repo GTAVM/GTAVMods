@@ -10,13 +10,8 @@ namespace CarControls
 
     public class Menu : Script
     {
-        public bool frontRightDoor;
-        public bool backLeftDoor;
-        public bool backRightDoor;
-        public bool engine;
         public bool blinkersAndLight;
-        public bool neonLights;
-
+       
         protected VehicleDoor Hood = VehicleDoor.Hood;
         protected VehicleDoor Trunk = VehicleDoor.Trunk;
         protected VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
@@ -78,13 +73,26 @@ namespace CarControls
 
         private void NeonLights(UIMenu mainMenu)
         {
-            var newitem = new UIMenuCheckboxItem("NeonLights", neonLights);
+            var newitem = new UIMenuCheckboxItem("NeonLights", false);
             mainMenu.AddItem(newitem);
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item != newitem) return;
-                neonLights = checked_;
-                UI.Notify("~r~NeonLights status: ~b~" + neonLights);
+               
+                    if (checked_)
+                    {
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Back, true);
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Front, true);
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Left, true);
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Right, true);
+                    }
+                    else
+                    {
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Back, false);
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Front, false);
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Left, false);
+                        vehicle.SetNeonLightsOn(VehicleNeonLight.Right, false);
+                    }
             };
         }
 
@@ -106,13 +114,13 @@ namespace CarControls
 
         private void Engine(UIMenu mainMenu)
         {
-            var newitem = new UIMenuCheckboxItem("Start or Stop engine", engine);
+            var newitem = new UIMenuCheckboxItem("Start or Stop engine", false);
             mainMenu.AddItem(newitem);
             mainMenu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item != newitem) return;
-                engine = checked_;
-                UI.Notify("~r~Start or Stop engine status: ~b~" + engine);
+                //if (!player.IsInVehicle())
+                    vehicle.EngineRunning = checked_;
             };
         }
 
