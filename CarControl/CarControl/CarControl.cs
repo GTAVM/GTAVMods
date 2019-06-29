@@ -16,9 +16,6 @@ namespace CarControls
         {
             Ped player = Game.Player.Character;
 
-            //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
-            Vehicle vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
-
             //Car Doors
             VehicleDoor Hood = VehicleDoor.Hood;
             VehicleDoor Trunk = VehicleDoor.Trunk;
@@ -27,6 +24,9 @@ namespace CarControls
             VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
             VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
 
+            //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
+            Vehicle vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
+            
             //Open or close Hood
             if (hood)
             {
@@ -151,21 +151,17 @@ namespace CarControls
             {
                 if (!(vehicle.IsNeonLightsOn(VehicleNeonLight.Back) || vehicle.IsNeonLightsOn(VehicleNeonLight.Front) || vehicle.IsNeonLightsOn(VehicleNeonLight.Left) || vehicle.IsNeonLightsOn(VehicleNeonLight.Right)))
                 {
-
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Back, true);
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Front, true);
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Left, true);
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Right, true);
-
                 }
                 else
                 {
-
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Back, false);
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Front, false);
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Left, false);
                     vehicle.SetNeonLightsOn(VehicleNeonLight.Right, false);
-
                 }
             }
 
