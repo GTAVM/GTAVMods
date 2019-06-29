@@ -13,6 +13,46 @@ namespace CH
     {
         static int countCompanions = 0;
 
+        public  static void SpawnCompanionPed(string model_name = "csb_stripper_02")
+        {
+            //Spawn the model
+            Ped ped = CreatePedByName(model_name);
+
+            //Set ped properties
+            ped.Armor = 50000;
+            ped.Health = 50000;
+            ped.MaxHealth = 50000;
+            ped.IsEnemy = false;
+            ped.IsPriorityTargetForEnemies = true;
+            ped.RelationshipGroup = 0;
+            ped.CanBeShotInVehicle = true;
+            ped.AlwaysDiesOnLowHealth = false;
+
+            //Follow Player
+            //Call Native Function
+            int playerG = Function.Call<int>(Hash.GET_PED_GROUP_INDEX, Game.Player.Character.Handle);
+            Function.Call(Hash.SET_PED_AS_GROUP_MEMBER, ped.Handle, playerG);
+
+            //Give a Weapon to ped
+
+            //Rifle
+            ped.Weapons.Give(WeaponHash.AdvancedRifle, 500, false, true);
+
+            //Colt
+            ped.Weapons.Give(WeaponHash.APPistol, 500, false, true);
+
+            //Parachute
+            ped.Weapons.Give(WeaponHash.Parachute, 1, true, true);
+
+            //KnifeHouse
+
+            ped.Weapons.Give(WeaponHash.Knife, 1, false, true);
+
+            //Set ped into vehicle
+
+            ped.SetIntoVehicle(Game.Player.Character.CurrentVehicle, VehicleSeat.Any);
+        }
+
         public static void SpawnEnemyPed(string model_name = "ig_bride")
         {
             //Spawn the model
