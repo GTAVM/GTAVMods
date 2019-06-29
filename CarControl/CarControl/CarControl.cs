@@ -10,6 +10,12 @@ namespace CarControls
         public static bool rightblinker;
         public static bool interiorlights;
 
+        private bool _frontLeftWindowUp;
+        private bool _frontRightWindowUp;
+        private bool _backLeftWindowUp;
+        private bool _backRightWindowUp;
+        private bool _allWindowsUp;
+
         public CarControl() => KeyDown += CarControl_KeyDown;
 
         private void CarControl_KeyDown(object sender, KeyEventArgs e)
@@ -81,51 +87,71 @@ namespace CarControls
             }
 
             if (!powerWindowsControl) return;
+
             switch (e.KeyCode)
             {
-                case Keys.NumPad1:
-                {
-                    if (player.IsInVehicle())
-                    {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollDownWindow(VehicleWindow.FrontLeftWindow);
-                    }
+                case Keys.NumPad4 when _frontLeftWindowUp == false:
+                    vehicle.RollDownWindow(VehicleWindow.FrontLeftWindow);
 
+                    _frontLeftWindowUp = true;
                     break;
-                }
-
-                case Keys.NumPad3:
-                {
-                    if (player.IsInVehicle())
-                    {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
-                    }
-
-                    break;
-                }
 
                 case Keys.NumPad4:
-                {
-                    if (player.IsInVehicle())
-                    {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
-                    }
+                    vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
 
+                    _frontLeftWindowUp = false;
                     break;
-                }
+
+                case Keys.NumPad6 when _frontRightWindowUp == false:
+                    vehicle.RollDownWindow(VehicleWindow.FrontRightWindow);
+
+                    _frontRightWindowUp = true;
+                    break;
 
                 case Keys.NumPad6:
-                {
-                    if (player.IsInVehicle())
-                    {
-                        vehicle = player.CurrentVehicle;
-                        vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
-                    }
+                    vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
 
+                    _frontRightWindowUp = false;
                     break;
-                }
+
+                case Keys.NumPad7 when _backLeftWindowUp == false:
+                    vehicle.RollDownWindow(VehicleWindow.BackLeftWindow);
+
+                    _backLeftWindowUp = true;
+                    break;
+
+                case Keys.NumPad7:
+                    vehicle.RollUpWindow(VehicleWindow.BackLeftWindow);
+
+                    _backLeftWindowUp = false;
+                    break;
+
+                case Keys.NumPad9 when _backRightWindowUp == false:
+                    vehicle.RollDownWindow(VehicleWindow.BackRightWindow);
+
+                    _backRightWindowUp = true;
+                    break;
+
+                case Keys.NumPad9:
+                    vehicle.RollUpWindow(VehicleWindow.BackRightWindow);
+
+                    _backRightWindowUp = false;
+                    break;
+
+                case Keys.NumPad5 when _allWindowsUp == false:
+                    vehicle.RollDownWindows();
+
+                    _allWindowsUp = true;
+                    break;
+
+                case Keys.NumPad5:
+                    vehicle.RollUpWindow(VehicleWindow.BackRightWindow);
+                    vehicle.RollUpWindow(VehicleWindow.BackLeftWindow);
+                    vehicle.RollUpWindow(VehicleWindow.FrontLeftWindow);
+                    vehicle.RollUpWindow(VehicleWindow.FrontRightWindow);
+
+                    _allWindowsUp = false;
+                    break;
             }
         }
     }

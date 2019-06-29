@@ -127,10 +127,11 @@ namespace CarControls
                 powerWindowsControl = checked_;
 
                 if (!checked_) return;
-                UI.ShowSubtitle("Down Front Left Window - NumPad1\n" +
-                                "Down Front Right Window - NumPad3\n" +
-                                "Up Front Left Window - NumPad4\n" +
-                                "Up Front Right Window - NumPad6", 10000);
+                UI.ShowSubtitle("Down/Up Front Left Window - NumPad4\n" +
+                                "Down/Up Front Right Window - NumPad6\n" +
+                                "Down/Up Back Left Window - NumPad7\n" +
+                                "Downn/Up Back Right Window - NumPad9\n" +
+                                "Down/Up All Window - NumPad5", 10000);
             };
         }
 
