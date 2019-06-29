@@ -14,23 +14,6 @@ namespace CarControls
 
         private void CarControl_KeyDown(object sender, KeyEventArgs e)
         {
-            player = Game.Player.Character;
-
-            //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
-            vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
-             if (backLeftDoor)
-            {
-                
-            }
-            //Open or close Back Right door
-            else if (backRightDoor)
-            {
-                
-            }
-            //Start or Stop engine
-            else if (engine)
-                vehicle.EngineRunning = vehicle.EngineRunning == false;
-
             //Turn on Blinkers and interior light
             if (blinkersAndLight)
             {
@@ -94,23 +77,6 @@ namespace CarControls
                         interiorlights = false;
                         UI.ShowSubtitle("interior light = Off");
                         break;
-                }
-            }
-            if (neonLights)
-            {
-                if (!(vehicle.IsNeonLightsOn(VehicleNeonLight.Back) || vehicle.IsNeonLightsOn(VehicleNeonLight.Front) || vehicle.IsNeonLightsOn(VehicleNeonLight.Left) || vehicle.IsNeonLightsOn(VehicleNeonLight.Right)))
-                {
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Back, true);
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Front, true);
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Left, true);
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Right, true);
-                }
-                else
-                {
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Back, false);
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Front, false);
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Left, false);
-                    vehicle.SetNeonLightsOn(VehicleNeonLight.Right, false);
                 }
             }
 
