@@ -9,10 +9,7 @@ namespace CarControls
         public static bool leftblinker;
         public static bool rightblinker;
         public static bool interiorlights;
-        //private static Ped player;
-        //Car Doors
-        //static VehicleDoor Hood = VehicleDoor.Hood;
-        
+
         public CarControl() => KeyDown += CarControl_KeyDown;
 
         private void CarControl_KeyDown(object sender, KeyEventArgs e)
@@ -22,26 +19,8 @@ namespace CarControls
             //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
              vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
 
-            ////Open or close Hood
-            //if (hood)
-            //{
-            //    if (vehicle.IsDoorOpen(Hood))
-            //        vehicle.CloseDoor(Hood, false);
-            //    else
-            //        vehicle.OpenDoor(Hood, false, false);
-            //}
-
-            //Open or close Trunk
-             if (trunk)
-            {
-                if (vehicle.IsDoorOpen(Trunk))
-                    vehicle.CloseDoor(Trunk, false);
-                else
-                    vehicle.OpenDoor(Trunk, false, false);
-            }
-
             //Open or close Front Left Door
-            else if (frontLeftDoor)
+             if (frontLeftDoor)
             {
                 if (vehicle.IsDoorOpen(FrontleftDoor))
                     vehicle.CloseDoor(FrontleftDoor, false);
