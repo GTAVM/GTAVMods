@@ -22,7 +22,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <IntermediateOutputPath>C:\Users\Adm\AppData\Local\Temp\vsD0B3.tmp\x64\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\W10\AppData\Local\Temp\vs9E62.tmp\x64\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ScriptHookVDotNet">
