@@ -16,19 +16,10 @@ namespace CarControls
 
         public static Boolean interiorlights = false;
 
-        public CarControl()
+        public CarControl() => KeyDown += CarControl_KeyDown;
+		
+        private void CarControl_KeyDown(object sender, KeyEventArgs e)
 		{
-			//KeyUp += DoorControlEventKeys;
-
-			//KeyUp += Blinkers;
-
-            KeyUp += CarControl_KeyUp;
-
-			KeyDown += CarControl_KeyDown;
-		}
-
-        private void CarControl_KeyUp(object sender, KeyEventArgs e)
-        {
             Ped player = Game.Player.Character;
 
             //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
@@ -323,11 +314,7 @@ namespace CarControls
 
                 }
             }
-        }
-
-        private void CarControl_KeyDown(object sender, KeyEventArgs e)
-		{
-			Ped player = Game.Player.Character;
+            
 			Vehicle vehicle = null;
 			if (e.KeyCode == Keys.NumPad1)
 			{
