@@ -9,14 +9,314 @@ namespace CarControls
 
 		public CarControl()
 		{
-			KeyUp += DoorControlEventKeys;
+			//KeyUp += DoorControlEventKeys;
 
-			KeyUp += Blinkers;
+			//KeyUp += Blinkers;
+
+            KeyUp += CarControl_KeyUp;
 
 			KeyDown += CarControl_KeyDown;
 		}
 
-		private void CarControl_KeyDown(object sender, KeyEventArgs e)
+        private void CarControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            Ped player = Game.Player.Character;
+
+            //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
+
+            Vehicle v = null;
+
+            if (player.IsInVehicle())
+            {
+
+                v = player.CurrentVehicle;
+
+            }
+            else
+            {
+
+                v = player.LastVehicle;
+
+            }
+
+            //Car Doors
+
+            VehicleDoor Hood = VehicleDoor.Hood;
+            VehicleDoor Trunk = VehicleDoor.Trunk;
+            VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
+            VehicleDoor FrontrightDoor = VehicleDoor.FrontRightDoor;
+            VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
+            VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
+
+            //Open or close Hood
+
+            //if (e.KeyCode == Keys.NumPad8)
+            if (hood)
+            {
+
+                if (v.IsDoorOpen(Hood) == true)
+                {
+
+                    v.CloseDoor(Hood, false);
+
+                }
+                else
+                {
+
+                    v.OpenDoor(Hood, false, false);
+
+                }
+
+                //hood = false;
+
+            }
+
+            //Open or close Trunk
+            //else if (e.KeyCode == Keys.NumPad5)
+            else if (trunk)
+            {
+
+                if (v.IsDoorOpen(Trunk) == true)
+                {
+
+                    v.CloseDoor(Trunk, false);
+
+                }
+                else
+                {
+                    v.OpenDoor(Trunk, false, false);
+
+                }
+
+
+            }
+
+            //Open or close Front Left Door
+            //else if (e.KeyCode == Keys.NumPad4)
+            else if (frontLeftDoor)
+            {
+
+                if (v.IsDoorOpen(FrontleftDoor))
+                {
+
+                    v.CloseDoor(FrontleftDoor, false);
+
+                }
+                else
+                {
+                    v.OpenDoor(FrontleftDoor, false, false);
+
+                }
+
+            }
+
+            //Open or close front right door
+            //else if (e.KeyCode == Keys.NumPad6)
+            else if (frontRightDoor)
+            {
+
+                if (v.IsDoorOpen(FrontrightDoor))
+                {
+
+                    v.CloseDoor(FrontrightDoor, false);
+
+                }
+                else
+                {
+                    v.OpenDoor(FrontrightDoor, false, false);
+
+                }
+            }
+            //Open or close Back Left Door
+            //else if (e.KeyCode == Keys.NumPad7)
+            else if (backLeftDoor)
+            {
+
+                if (v.IsDoorOpen(BackleftDoor))
+                {
+
+                    v.CloseDoor(BackleftDoor, false);
+
+                }
+                else
+                {
+                    v.OpenDoor(BackleftDoor, false, false);
+
+                }
+            }
+            //Open or close Back Right door
+            //else if (e.KeyCode == Keys.NumPad9)
+            else if (backRightDoor)
+            {
+
+                if (v.IsDoorOpen(BackrightDoor))
+                {
+
+                    v.CloseDoor(BackrightDoor, false);
+
+                }
+                else
+                {
+                    v.OpenDoor(BackrightDoor, false, false);
+
+                }
+            }
+            //Start or Stop engine
+            //else if (e.KeyCode == Keys.NumPad0)
+            else if (engine)
+
+            {
+
+                if (v.EngineRunning == false)
+                {
+
+                    v.EngineRunning = true;
+
+                }
+                else
+                {
+
+                    v.EngineRunning = false;
+
+                }
+
+            }
+
+            //Turn on Blinkers and interior light
+            if (blinkersAndLight)
+            {
+                if (player.IsInVehicle())
+                {
+
+                    v = player.CurrentVehicle;
+
+                }
+                else
+                {
+
+                    v = player.LastVehicle;
+
+                }
+
+                //Left Blinker
+
+                if (e.KeyCode == Keys.NumPad1)
+                {
+
+                    if (leftblinker == false)
+                    {
+
+                        v.RightIndicatorLightOn = false;
+                        v.LeftIndicatorLightOn = true;
+
+                        leftblinker = true;
+                        rightblinker = false;
+
+                    }
+                    else
+                    {
+
+                        v.RightIndicatorLightOn = false;
+                        v.LeftIndicatorLightOn = false;
+
+                        leftblinker = false;
+                        rightblinker = false;
+
+                    }
+
+                }
+
+                //Right Blinker
+
+                if (e.KeyCode == Keys.NumPad3)
+                {
+
+                    if (rightblinker == false)
+                    {
+
+                        v.RightIndicatorLightOn = true;
+                        v.LeftIndicatorLightOn = false;
+
+                        rightblinker = true;
+                        leftblinker = false;
+
+                    }
+                    else
+                    {
+                        v.RightIndicatorLightOn = false;
+                        v.LeftIndicatorLightOn = false;
+
+                        rightblinker = false;
+                        leftblinker = false;
+                    }
+                }
+                //Emergency Lights
+                else if (e.KeyCode == Keys.NumPad2)
+                {
+                    if (rightblinker == false || leftblinker == false)
+                    {
+                        v.RightIndicatorLightOn = true;
+                        v.LeftIndicatorLightOn = true;
+
+                        rightblinker = true;
+                        leftblinker = true;
+                    }
+                    else
+                    {
+                        v.RightIndicatorLightOn = false;
+                        v.LeftIndicatorLightOn = false;
+
+                        rightblinker = false;
+                        leftblinker = false;
+                    }
+                }
+                //Interior lights
+                else if (e.KeyCode == Keys.Multiply)
+                {
+
+                    if (interiorlights == false)
+                    {
+
+                        v.InteriorLightOn = true;
+
+                        interiorlights = true;
+                        UI.ShowSubtitle("interior light = On");
+                    }
+                    else
+                    {
+
+                        v.InteriorLightOn = false;
+
+                        interiorlights = false;
+                        UI.ShowSubtitle("interior light = Off");
+                    }
+
+                }
+            }
+            if (neonLights)
+            {
+                if (!(v.IsNeonLightsOn(VehicleNeonLight.Back) || v.IsNeonLightsOn(VehicleNeonLight.Front) || v.IsNeonLightsOn(VehicleNeonLight.Left) || v.IsNeonLightsOn(VehicleNeonLight.Right)))
+                {
+
+                    v.SetNeonLightsOn(VehicleNeonLight.Back, true);
+                    v.SetNeonLightsOn(VehicleNeonLight.Front, true);
+                    v.SetNeonLightsOn(VehicleNeonLight.Left, true);
+                    v.SetNeonLightsOn(VehicleNeonLight.Right, true);
+
+                }
+                else
+                {
+
+                    v.SetNeonLightsOn(VehicleNeonLight.Back, false);
+                    v.SetNeonLightsOn(VehicleNeonLight.Front, false);
+                    v.SetNeonLightsOn(VehicleNeonLight.Left, false);
+                    v.SetNeonLightsOn(VehicleNeonLight.Right, false);
+
+                }
+            }
+        }
+
+        private void CarControl_KeyDown(object sender, KeyEventArgs e)
 		{
 			Ped player = Game.Player.Character;
 			Vehicle vehicle = null;
@@ -71,329 +371,329 @@ namespace CarControls
 		public void DoorControlEventKeys(object sender, KeyEventArgs e)
 		{
 
-			Ped player = Game.Player.Character;
+			//Ped player = Game.Player.Character;
 
-			//Get current vehicle if the player it's on vehicle and get the last vehicle if not.
+			////Get current vehicle if the player it's on vehicle and get the last vehicle if not.
 
-			Vehicle v = null;
+			//Vehicle v = null;
 
-			if (player.IsInVehicle())
-			{
+			//if (player.IsInVehicle())
+			//{
 
-				v = player.CurrentVehicle;
+			//	v = player.CurrentVehicle;
 
-			}
-			else
-			{
+			//}
+			//else
+			//{
 
-				v = player.LastVehicle;
+			//	v = player.LastVehicle;
 
-			}
+			//}
 
-			//Car Doors
+			////Car Doors
 
-			VehicleDoor Hood = VehicleDoor.Hood;
-			VehicleDoor Trunk = VehicleDoor.Trunk;
-			VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
-			VehicleDoor FrontrightDoor = VehicleDoor.FrontRightDoor;
-			VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
-			VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
+			//VehicleDoor Hood = VehicleDoor.Hood;
+			//VehicleDoor Trunk = VehicleDoor.Trunk;
+			//VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
+			//VehicleDoor FrontrightDoor = VehicleDoor.FrontRightDoor;
+			//VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
+			//VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
 
-			//Open or close Hood
+			////Open or close Hood
 
-			//if (e.KeyCode == Keys.NumPad8)
-			if (hood)
-			{
+			////if (e.KeyCode == Keys.NumPad8)
+			//if (hood)
+			//{
 
-				if (v.IsDoorOpen(Hood) == true)
-				{
+			//	if (v.IsDoorOpen(Hood) == true)
+			//	{
 
-					v.CloseDoor(Hood, false);
+			//		v.CloseDoor(Hood, false);
 
-				}
-				else
-				{
+			//	}
+			//	else
+			//	{
 
-					v.OpenDoor(Hood, false, false);
+			//		v.OpenDoor(Hood, false, false);
 
-				}
+			//	}
 
-				//hood = false;
+			//	//hood = false;
 
-			}
+			//}
 
-			//Open or close Trunk
-			//else if (e.KeyCode == Keys.NumPad5)
-			else if (trunk)
-			{
+			////Open or close Trunk
+			////else if (e.KeyCode == Keys.NumPad5)
+			//else if (trunk)
+			//{
 
-				if (v.IsDoorOpen(Trunk) == true)
-				{
+			//	if (v.IsDoorOpen(Trunk) == true)
+			//	{
 
-					v.CloseDoor(Trunk, false);
+			//		v.CloseDoor(Trunk, false);
 
-				}
-				else
-				{
-					v.OpenDoor(Trunk, false, false);
+			//	}
+			//	else
+			//	{
+			//		v.OpenDoor(Trunk, false, false);
 
-				}
+			//	}
 
 
-			}
+			//}
 
-			//Open or close Front Left Door
-			//else if (e.KeyCode == Keys.NumPad4)
-			else if (frontLeftDoor)
-			{
+			////Open or close Front Left Door
+			////else if (e.KeyCode == Keys.NumPad4)
+			//else if (frontLeftDoor)
+			//{
 
-				if (v.IsDoorOpen(FrontleftDoor))
-				{
+			//	if (v.IsDoorOpen(FrontleftDoor))
+			//	{
 
-					v.CloseDoor(FrontleftDoor, false);
+			//		v.CloseDoor(FrontleftDoor, false);
 
-				}
-				else
-				{
-					v.OpenDoor(FrontleftDoor, false, false);
+			//	}
+			//	else
+			//	{
+			//		v.OpenDoor(FrontleftDoor, false, false);
 
-				}
+			//	}
 
-			}
+			//}
 
-			//Open or close front right door
-			//else if (e.KeyCode == Keys.NumPad6)
-			else if (frontRightDoor)
-			{
+			////Open or close front right door
+			////else if (e.KeyCode == Keys.NumPad6)
+			//else if (frontRightDoor)
+			//{
 
-				if (v.IsDoorOpen(FrontrightDoor))
-				{
+			//	if (v.IsDoorOpen(FrontrightDoor))
+			//	{
 
-					v.CloseDoor(FrontrightDoor, false);
+			//		v.CloseDoor(FrontrightDoor, false);
 
-				}
-				else
-				{
-					v.OpenDoor(FrontrightDoor, false, false);
+			//	}
+			//	else
+			//	{
+			//		v.OpenDoor(FrontrightDoor, false, false);
 
-				}
-			}
-			//Open or close Back Left Door
-			//else if (e.KeyCode == Keys.NumPad7)
-			else if (backLeftDoor)
-			{
+			//	}
+			//}
+			////Open or close Back Left Door
+			////else if (e.KeyCode == Keys.NumPad7)
+			//else if (backLeftDoor)
+			//{
 
-				if (v.IsDoorOpen(BackleftDoor))
-				{
+			//	if (v.IsDoorOpen(BackleftDoor))
+			//	{
 
-					v.CloseDoor(BackleftDoor, false);
+			//		v.CloseDoor(BackleftDoor, false);
 
-				}
-				else
-				{
-					v.OpenDoor(BackleftDoor, false, false);
+			//	}
+			//	else
+			//	{
+			//		v.OpenDoor(BackleftDoor, false, false);
 
-				}
-			}
-			//Open or close Back Right door
-			//else if (e.KeyCode == Keys.NumPad9)
-			else if (backRightDoor)
-			{
+			//	}
+			//}
+			////Open or close Back Right door
+			////else if (e.KeyCode == Keys.NumPad9)
+			//else if (backRightDoor)
+			//{
 
-				if (v.IsDoorOpen(BackrightDoor))
-				{
+			//	if (v.IsDoorOpen(BackrightDoor))
+			//	{
 
-					v.CloseDoor(BackrightDoor, false);
+			//		v.CloseDoor(BackrightDoor, false);
 
-				}
-				else
-				{
-					v.OpenDoor(BackrightDoor, false, false);
+			//	}
+			//	else
+			//	{
+			//		v.OpenDoor(BackrightDoor, false, false);
 
-				}
-			}
-			//Start or Stop engine
-			//else if (e.KeyCode == Keys.NumPad0)
-			else if (engine)
+			//	}
+			//}
+			////Start or Stop engine
+			////else if (e.KeyCode == Keys.NumPad0)
+			//else if (engine)
 
-			{
+			//{
 
-				if (v.EngineRunning == false)
-				{
+			//	if (v.EngineRunning == false)
+			//	{
 
-					v.EngineRunning = true;
+			//		v.EngineRunning = true;
 
-				}
-				else
-				{
+			//	}
+			//	else
+			//	{
 
-					v.EngineRunning = false;
+			//		v.EngineRunning = false;
 
-				}
+			//	}
 
-			}
+			//}
 
 
 		}
 
 		//Turn on Blinkers and interior light
 
-		public void Blinkers(object sender, KeyEventArgs e)
-		{
+		//public void Blinkers(object sender, KeyEventArgs e)
+		//{
 
-			if (blinkersAndLight)
-			{
-				//Player and current vehicle
-				Ped player = Game.Player.Character;
+		//	if (blinkersAndLight)
+		//	{
+		//		//Player and current vehicle
+		//		Ped player = Game.Player.Character;
 
-				//Get current vehicle if the player it's on vehicle and get the last vehicle if not.
+		//		//Get current vehicle if the player it's on vehicle and get the last vehicle if not.
 
-				Vehicle v = null;
+		//		Vehicle v = null;
 
-				if (player.IsInVehicle())
-				{
+		//		if (player.IsInVehicle())
+		//		{
 
-					v = player.CurrentVehicle;
+		//			v = player.CurrentVehicle;
 
-				}
-				else
-				{
+		//		}
+		//		else
+		//		{
 
-					v = player.LastVehicle;
+		//			v = player.LastVehicle;
 
-				}
+		//		}
 
-				//Left Blinker
+		//		//Left Blinker
 
-				if (e.KeyCode == Keys.NumPad1)
-				{
+		//		if (e.KeyCode == Keys.NumPad1)
+		//		{
 
-					if (leftblinker == false)
-					{
+		//			if (leftblinker == false)
+		//			{
 
-						v.RightIndicatorLightOn = false;
-						v.LeftIndicatorLightOn = true;
+		//				v.RightIndicatorLightOn = false;
+		//				v.LeftIndicatorLightOn = true;
 
-						leftblinker = true;
-						rightblinker = false;
+		//				leftblinker = true;
+		//				rightblinker = false;
 
-					}
-					else
-					{
+		//			}
+		//			else
+		//			{
 
-						v.RightIndicatorLightOn = false;
-						v.LeftIndicatorLightOn = false;
+		//				v.RightIndicatorLightOn = false;
+		//				v.LeftIndicatorLightOn = false;
 
-						leftblinker = false;
-						rightblinker = false;
+		//				leftblinker = false;
+		//				rightblinker = false;
 
-					}
+		//			}
 
-				}
+		//		}
 
-				//Right Blinker
+		//		//Right Blinker
 
-				if (e.KeyCode == Keys.NumPad3)
-				{
+		//		if (e.KeyCode == Keys.NumPad3)
+		//		{
 
-					if (rightblinker == false)
-					{
+		//			if (rightblinker == false)
+		//			{
 
-						v.RightIndicatorLightOn = true;
-						v.LeftIndicatorLightOn = false;
+		//				v.RightIndicatorLightOn = true;
+		//				v.LeftIndicatorLightOn = false;
 
-						rightblinker = true;
-						leftblinker = false;
+		//				rightblinker = true;
+		//				leftblinker = false;
 
-					}
-					else
-					{
+		//			}
+		//			else
+		//			{
 
-						v.RightIndicatorLightOn = false;
-						v.LeftIndicatorLightOn = false;
+		//				v.RightIndicatorLightOn = false;
+		//				v.LeftIndicatorLightOn = false;
 
-						rightblinker = false;
-						leftblinker = false;
+		//				rightblinker = false;
+		//				leftblinker = false;
 
-					}
-
-
-					//Emergency Lights
-
-				}
-				else if (e.KeyCode == Keys.NumPad2)
-				{
-
-					if (rightblinker == false || leftblinker == false)
-					{
-
-						v.RightIndicatorLightOn = true;
-						v.LeftIndicatorLightOn = true;
-
-						rightblinker = true;
-						leftblinker = true;
-
-					}
-					else
-					{
-
-						v.RightIndicatorLightOn = false;
-						v.LeftIndicatorLightOn = false;
-
-						rightblinker = false;
-						leftblinker = false;
-
-					}
+		//			}
 
 
+		//			//Emergency Lights
 
-				}
-				//Interior lights
-				else if (e.KeyCode == Keys.Multiply)
-				{
+		//		}
+		//		else if (e.KeyCode == Keys.NumPad2)
+		//		{
 
-					if (interiorlights == false)
-					{
+		//			if (rightblinker == false || leftblinker == false)
+		//			{
 
-						v.InteriorLightOn = true;
+		//				v.RightIndicatorLightOn = true;
+		//				v.LeftIndicatorLightOn = true;
 
-						interiorlights = true;
-						UI.ShowSubtitle("interior light = On");
-					}
-					else
-					{
+		//				rightblinker = true;
+		//				leftblinker = true;
 
-						v.InteriorLightOn = false;
+		//			}
+		//			else
+		//			{
 
-						interiorlights = false;
-						UI.ShowSubtitle("interior light = Off");
-					}
+		//				v.RightIndicatorLightOn = false;
+		//				v.LeftIndicatorLightOn = false;
 
-				}
-			}
-			if (neonLights)
-			{
-				Vehicle v = Game.Player.Character.CurrentVehicle;
+		//				rightblinker = false;
+		//				leftblinker = false;
 
-				if (!(v.IsNeonLightsOn(VehicleNeonLight.Back) || v.IsNeonLightsOn(VehicleNeonLight.Front) || v.IsNeonLightsOn(VehicleNeonLight.Left) || v.IsNeonLightsOn(VehicleNeonLight.Right)))
-				{
+		//			}
 
-					v.SetNeonLightsOn(VehicleNeonLight.Back, true);
-					v.SetNeonLightsOn(VehicleNeonLight.Front, true);
-					v.SetNeonLightsOn(VehicleNeonLight.Left, true);
-					v.SetNeonLightsOn(VehicleNeonLight.Right, true);
 
-				}
-				else
-				{
 
-					v.SetNeonLightsOn(VehicleNeonLight.Back, false);
-					v.SetNeonLightsOn(VehicleNeonLight.Front, false);
-					v.SetNeonLightsOn(VehicleNeonLight.Left, false);
-					v.SetNeonLightsOn(VehicleNeonLight.Right, false);
+		//		}
+		//		//Interior lights
+		//		else if (e.KeyCode == Keys.Multiply)
+		//		{
 
-				}
-			}
-		}
+		//			if (interiorlights == false)
+		//			{
+
+		//				v.InteriorLightOn = true;
+
+		//				interiorlights = true;
+		//				UI.ShowSubtitle("interior light = On");
+		//			}
+		//			else
+		//			{
+
+		//				v.InteriorLightOn = false;
+
+		//				interiorlights = false;
+		//				UI.ShowSubtitle("interior light = Off");
+		//			}
+
+		//		}
+		//	}
+		//	if (neonLights)
+		//	{
+		//		Vehicle v = Game.Player.Character.CurrentVehicle;
+
+		//		if (!(v.IsNeonLightsOn(VehicleNeonLight.Back) || v.IsNeonLightsOn(VehicleNeonLight.Front) || v.IsNeonLightsOn(VehicleNeonLight.Left) || v.IsNeonLightsOn(VehicleNeonLight.Right)))
+		//		{
+
+		//			v.SetNeonLightsOn(VehicleNeonLight.Back, true);
+		//			v.SetNeonLightsOn(VehicleNeonLight.Front, true);
+		//			v.SetNeonLightsOn(VehicleNeonLight.Left, true);
+		//			v.SetNeonLightsOn(VehicleNeonLight.Right, true);
+
+		//		}
+		//		else
+		//		{
+
+		//			v.SetNeonLightsOn(VehicleNeonLight.Back, false);
+		//			v.SetNeonLightsOn(VehicleNeonLight.Front, false);
+		//			v.SetNeonLightsOn(VehicleNeonLight.Left, false);
+		//			v.SetNeonLightsOn(VehicleNeonLight.Right, false);
+
+		//		}
+		//	}
+		//}
 	}
 }
