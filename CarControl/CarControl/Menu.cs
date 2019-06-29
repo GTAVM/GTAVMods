@@ -25,7 +25,7 @@ namespace CarControls
         protected VehicleDoor FrontrightDoor = VehicleDoor.FrontRightDoor;
         protected VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
         protected VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
-        
+
         protected Ped player;
         protected Vehicle vehicle;
 
@@ -56,6 +56,10 @@ namespace CarControls
             Tick += (o, e) => _menuPool.ProcessMenus();
             KeyDown += (o, e) =>
             {
+                player = Game.Player.Character;
+                //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
+                vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
+
                 if (e.KeyCode == Keys.F10 && !_menuPool.IsAnyMenuOpen()) // Our menu on/off switch
                     mainMenu.Visible = !mainMenu.Visible;
             };
@@ -154,9 +158,7 @@ namespace CarControls
             {
                 if (item == newitem)
                 {
-                    player = Game.Player.Character;
-                    //Get current vehicle if the player it's on vehicle and get the last vehicle if not.
-                    vehicle = player.IsInVehicle() ? player.CurrentVehicle : player.LastVehicle;
+                    
                     //Open or close Hood
                     if (checked_)
                         vehicle.OpenDoor(Hood, false, false);
@@ -167,14 +169,17 @@ namespace CarControls
         }
         public void OpenOrCloseTrunk(UIMenu menu)
         {
-            var newitem = new UIMenuCheckboxItem("Open or close Trunk", trunk);
+            var newitem = new UIMenuCheckboxItem("Open or close Trunk", false);
             menu.AddItem(newitem);
             menu.OnCheckboxChange += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
-                    trunk = checked_;
-                    UI.Notify("~r~Trunk status: ~b~" + trunk);
+                    if (checked_)
+                        vehicle.OpenDoor(Trunk, false, false);
+                    else
+                        vehicle.CloseDoor(Trunk, false);
+
                 }
             };
         }
