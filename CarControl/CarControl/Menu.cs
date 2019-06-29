@@ -7,26 +7,26 @@ using System;
 
 namespace CarControls
 {
-
     public class Menu : Script
     {
-        public bool blinkersAndLight;
-        public bool powerWindowsControl;
-
-        protected VehicleDoor Hood = VehicleDoor.Hood;
-        protected VehicleDoor Trunk = VehicleDoor.Trunk;
-        protected VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
-        protected VehicleDoor FrontrightDoor = VehicleDoor.FrontRightDoor;
-        protected VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
-        protected VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
+        protected bool blinkersAndLight;
+        protected bool powerWindowsControl;
 
         protected Ped player;
         protected Vehicle vehicle;
 
+        private const VehicleDoor Hood = VehicleDoor.Hood;
+        private const VehicleDoor Trunk = VehicleDoor.Trunk;
+        private const VehicleDoor FrontleftDoor = VehicleDoor.FrontLeftDoor;
+        private const VehicleDoor FrontrightDoor = VehicleDoor.FrontRightDoor;
+        private const VehicleDoor BackleftDoor = VehicleDoor.BackLeftDoor;
+        private const VehicleDoor BackrightDoor = VehicleDoor.BackRightDoor;
+        
         const string ModName = "Car Control";
 
         private MenuPool _menuPool;
-        public Menu()
+
+        protected Menu()
         {
             CH.Messages.NotifyToLoad(modName: ModName);
 
