@@ -6,9 +6,9 @@ using GTA.Native;
 
 namespace KurumaTest
 {
-    public class KurumaTest : Script
+    public class PedandThingsTest : Script
 	{
-		public KurumaTest() => KeyUp += onKeyPressed;
+		public PedandThingsTest() => KeyUp += onKeyPressed;
 
 		public void onKeyPressed(object sender, KeyEventArgs e)
 		{
@@ -250,40 +250,42 @@ namespace KurumaTest
 
                 case Keys.U:
 
+                    CH.HPeds.SpawnEnemyPed();
+
                     //Model name, in this case it's the random event Bride
-                    string model_name = "ig_bride"; //Bride ped 1633872967 ig_bride
+                    /*string model_name = "ig_bride"*/; //Bride ped 1633872967 ig_bride
 
 					//Spawn the model
-					Ped companion = HPeds.CreatePedByName(model_name);
+					//Ped companion = HPeds.CreatePedByName(model_name);
 
-					//Set ped properties
-					companion.Armor = 50000;
-					companion.Health = 50000;
-					companion.MaxHealth = 50000;
-					companion.IsEnemy = true;
-					companion.IsPriorityTargetForEnemies = true;
-					companion.RelationshipGroup = 5;
-					companion.CanBeShotInVehicle = true;
-					companion.AlwaysDiesOnLowHealth = false;
+					////Set ped properties
+					//companion.Armor = 50000;
+					//companion.Health = 50000;
+					//companion.MaxHealth = 50000;
+					//companion.IsEnemy = true;
+					//companion.IsPriorityTargetForEnemies = true;
+					//companion.RelationshipGroup = 5;
+					//companion.CanBeShotInVehicle = true;
+					//companion.AlwaysDiesOnLowHealth = false;
 
-					//Give a Weapon to ped
+					////Give a Weapon to ped
 
-					//Rifle
-					companion.Weapons.Give(WeaponHash.AdvancedRifle, 500, false, true);
+					////Rifle
+					//companion.Weapons.Give(WeaponHash.AdvancedRifle, 500, false, true);
 
-					//Colt
-					companion.Weapons.Give(WeaponHash.APPistol, 500, false, true);
+					////Colt
+					//companion.Weapons.Give(WeaponHash.APPistol, 500, false, true);
 
-					//Parachute
-					companion.Weapons.Give(WeaponHash.Parachute, 1, true, true);
+					////Parachute
+					//companion.Weapons.Give(WeaponHash.Parachute, 1, true, true);
 
-					//KnifeHouse
+					////KnifeHouse
 
-					companion.Weapons.Give(WeaponHash.Knife, 1, false, true);
+					//companion.Weapons.Give(WeaponHash.Knife, 1, false, true);
 
-					//Set ped into vehicle
+					////Set ped into vehicle
 
-					companion.SetIntoVehicle(Game.Player.Character.CurrentVehicle, VehicleSeat.Any);
+					//companion.SetIntoVehicle(Game.Player.Character.CurrentVehicle, VehicleSeat.Any);
 
 					break;
 
