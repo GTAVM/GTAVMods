@@ -21,14 +21,13 @@ namespace Tests
         {
             if (e.KeyCode == Keys.Home)
             {
-                GTA.Native.Function.Call(Hash.SET_PLAYER_WANTED_LEVEL, Game.Player.Character, true, 5);
-                //CH.HWorld.IncreaseWaves();
+                CH.HWorld.IncreaseWaves();
                 UI.Notify(@"Pressed Key: Nome");
             }
 
             if (e.KeyCode == Keys.End)
             {
-                //CH.HWorld.ReduceWaves();
+                CH.HWorld.ReduceWaves();
                 UI.Notify("Pressed Key: End");
             }
         }
