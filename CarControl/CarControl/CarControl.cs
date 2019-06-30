@@ -48,7 +48,6 @@ namespace CarControls
                         rightblinker = true;
                         leftblinker = false;
                         break;
-                    //Emergency Lights
                     case Keys.NumPad3:
                         vehicle.RightIndicatorLightOn = false;
                         vehicle.LeftIndicatorLightOn = false;
@@ -56,6 +55,7 @@ namespace CarControls
                         rightblinker = false;
                         leftblinker = false;
                         break;
+                    //Emergency Lights
                     case Keys.NumPad2 when rightblinker == false || leftblinker == false:
                         vehicle.RightIndicatorLightOn = true;
                         vehicle.LeftIndicatorLightOn = true;
@@ -63,7 +63,7 @@ namespace CarControls
                         rightblinker = true;
                         leftblinker = true;
                         break;
-                    //Interior lights
+                    
                     case Keys.NumPad2:
                         vehicle.RightIndicatorLightOn = false;
                         vehicle.LeftIndicatorLightOn = false;
@@ -71,6 +71,7 @@ namespace CarControls
                         rightblinker = false;
                         leftblinker = false;
                         break;
+                    //Interior lights
                     case Keys.Decimal when interiorlights == false:
                         vehicle.InteriorLightOn = true;
 
