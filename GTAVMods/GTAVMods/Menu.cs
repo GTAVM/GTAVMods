@@ -4,185 +4,155 @@ using System.Windows.Forms;
 
 namespace GTAVMods
 {
-	public class Menu : Script
-	{
-		#region variable comments
-		//public bool scriptTutorial_CreateDogs;
-		//public bool scriptTutorial_KilleDogs;
-		//public bool driverInCar;
-		//public bool tuningDubsta;
-		//public bool killers;
-		//public bool killersComon;
-		//public bool createHydra;
-		//public bool hydraWithPilot;
-		//public bool crazyChristmasTogle;
-		//public bool cordReporter = false;
-		//public bool driveToWapointPosition;
-		//public bool cruise;
-		//public bool repair;
-		#endregion
-
-		public bool visibility;
+    public class Menu : Script
+    {
         const string ModName = "GTAVMods";
 
         public Menu()
-		{
+        {
             CH.Messages.NotifyToLoad(modName: ModName);
 
-            _menuPool = new MenuPool();
-			var mainMenu = new UIMenu(ModName, "GTAVMods - All in One");
-			_menuPool.Add(mainMenu);
-						
-			SpawnKillers2(mainMenu);
-			SpawnKillers(mainMenu);
-			Cord(mainMenu);
-			SpawnHydra(mainMenu);
-			SpawnHydraWithPilot(mainMenu);
-			SpawnDriverInCar(mainMenu);
-			ScriptTutorial_CreateDogs(mainMenu);
-			ScriptTutorial_KilleDogs(mainMenu);
-			Visibility(mainMenu);
-            
-			_menuPool.RefreshIndex();
+            var menuPool = new MenuPool();
+            var mainMenu = new UIMenu(ModName, "GTAVMods - All in One");
+            menuPool.Add(mainMenu);
 
-			Tick += (o, e) => _menuPool.ProcessMenus();
-			KeyDown += (o, e) =>
-			{
-				if (e.KeyCode == Keys.F12 && !_menuPool.IsAnyMenuOpen()) // Our menu on/off switch
-					mainMenu.Visible = !mainMenu.Visible;
-			};
+            SpawnKillers2(mainMenu);
+            SpawnKillers(mainMenu);
+            Cord(mainMenu);
+            SpawnHydra(mainMenu);
+            SpawnHydraWithPilot(mainMenu);
+            SpawnDriverInCar(mainMenu);
+            ScriptTutorial_CreateDogs(mainMenu);
+            ScriptTutorial_KilleDogs(mainMenu);
+            Visibility(mainMenu);
 
-		}
+            menuPool.RefreshIndex();
 
-		private MenuPool _menuPool;
-		
-		public void SpawnKillers2(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("Killers2");
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
-					Killers2.Spawn();
-				}
-			};
-		}
+            Tick += (o, e) => menuPool.ProcessMenus();
+            KeyDown += (o, e) =>
+            {
+                if (e.KeyCode == Keys.F12 && !menuPool.IsAnyMenuOpen()) // Our menu on/off switch
+                    mainMenu.Visible = !mainMenu.Visible;
+            };
 
-		public void Visibility(UIMenu menu)
-		{
-			var newitem = new UIMenuCheckboxItem("ChangeVisibility", visibility);
-			menu.AddItem(newitem);
-			menu.OnCheckboxChange += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
+        }
+
+        void SpawnKillers2(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("Killers2");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
+                    Killers2.Spawn();
+                }
+            };
+        }
+
+        void Visibility(UIMenu menu)
+        {
+            var newitem = new UIMenuCheckboxItem("ChangeVisibility", false);
+            menu.AddItem(newitem);
+            menu.OnCheckboxChange += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
                     CH.HPeds.ChangePlayerVisibility();
-				}
-			};
-		}
-				
-		public void Cord(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("CordReporter", "Получение координат и запсь в файл\nCoordReport.txt"/*cordReporter*/);
+                }
+            };
+        }
 
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
-                    CH.GetCoordinatesPlayer.Report();					
-				}
-			};
-		}
+        void Cord(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("CordReporter", "Получение координат и запсь в файл\nCoordReport.txt");
 
-		public void SpawnHydra(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("Hydra", "Создать Hydra" /*createHydra*/);
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
-					//createHydra = checked_;
-					CreateHydra.Spawn();
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
+                    CH.GetCoordinatesPlayer.Report();
+                }
+            };
+        }
 
-				}
-			};
-		}
-		public void SpawnHydraWithPilot(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("Hydra With Pilot", "SpawnHydraWithPilot" /*hydraWithPilot*/);
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
-					HydraWithPilot.Spawn();
-					//hydraWithPilot = checked_;
+        void SpawnHydra(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("Hydra", "Создать Hydra");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
+                    CreateHydra.Spawn();
+                }
+            };
+        }
 
-				}
-			};
-		}
+        void SpawnHydraWithPilot(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("Hydra With Pilot", "SpawnHydraWithPilot");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
+                    HydraWithPilot.Spawn();
+                }
+            };
+        }
 
-		public void SpawnDriverInCar(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("DriverInCar", "SpawnDriverInCar"/*driverInCar*/);
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
-					//driverInCar = checked_;
-					DriverInCar.Spawn();
+        void SpawnDriverInCar(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("DriverInCar", "SpawnDriverInCar");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
+                    DriverInCar.Spawn();
+                }
+            };
+        }
 
-				}
-			};
-		}
+        void SpawnKillers(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("~y~Killers", "SpawnKillers");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
+                    Killers.Spawn();
+                }
+            };
+        }
 
-		public void SpawnKillers(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("~y~Killers", "SpawnKillers"/*killers*/);
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
-					Killers.Spawn();
-					//killers = checked_;
-
-				}
-			};
-		}
-
-		public void ScriptTutorial_CreateDogs(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("CreateDogs", "Create Dogs"/*scriptTutorial_CreateDogs*/);
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
+        void ScriptTutorial_CreateDogs(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("CreateDogs", "Create Dogs");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
                     CH.HPeds.Dogs(true);
-					//scriptTutorial_CreateDogs = checked_;
+                }
+            };
+        }
 
-				}
-			};
-		}
-
-		public void ScriptTutorial_KilleDogs(UIMenu menu)
-		{
-			var newitem = new UIMenuItem("KilleDogs", "Kille Dogs"/*scriptTutorial_KilleDogs*/);
-			menu.AddItem(newitem);
-			menu.OnItemSelect += (sender, item, checked_) =>
-			{
-				if (item == newitem)
-				{
+        void ScriptTutorial_KilleDogs(UIMenu menu)
+        {
+            var newitem = new UIMenuItem("KilleDogs", "Kille Dogs");
+            menu.AddItem(newitem);
+            menu.OnItemSelect += (sender, item, checked_) =>
+            {
+                if (item == newitem)
+                {
                     CH.HPeds.Dogs(false);
-					//scriptTutorial_KilleDogs = true;
-
-				}
-			};
-		}
-	}
+                }
+            };
+        }
+    }
 }
