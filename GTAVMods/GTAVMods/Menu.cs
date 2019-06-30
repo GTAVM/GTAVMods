@@ -12,9 +12,9 @@ namespace GTAVMods
         {
             CH.Messages.NotifyToLoad(modName: ModName);
 
-            _menuPool = new MenuPool();
+            var menuPool = new MenuPool();
             var mainMenu = new UIMenu(ModName, "GTAVMods - All in One");
-            _menuPool.Add(mainMenu);
+            menuPool.Add(mainMenu);
 
             SpawnKillers2(mainMenu);
             SpawnKillers(mainMenu);
@@ -26,18 +26,16 @@ namespace GTAVMods
             ScriptTutorial_KilleDogs(mainMenu);
             Visibility(mainMenu);
 
-            _menuPool.RefreshIndex();
+            menuPool.RefreshIndex();
 
-            Tick += (o, e) => _menuPool.ProcessMenus();
+            Tick += (o, e) => menuPool.ProcessMenus();
             KeyDown += (o, e) =>
             {
-                if (e.KeyCode == Keys.F12 && !_menuPool.IsAnyMenuOpen()) // Our menu on/off switch
+                if (e.KeyCode == Keys.F12 && !menuPool.IsAnyMenuOpen()) // Our menu on/off switch
                     mainMenu.Visible = !mainMenu.Visible;
             };
 
         }
-
-        private MenuPool _menuPool;
 
         void SpawnKillers2(UIMenu menu)
         {
