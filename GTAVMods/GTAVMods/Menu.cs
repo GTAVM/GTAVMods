@@ -67,7 +67,7 @@ namespace GTAVMods
 
         void Cord(UIMenu menu)
         {
-            var newitem = new UIMenuItem("CordReporter", "Получение координат и запсь в файл\nCoordReport.txt"/*cordReporter*/);
+            var newitem = new UIMenuItem("CordReporter", "Получение координат и запсь в файл\nCoordReport.txt");
 
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
@@ -81,90 +81,78 @@ namespace GTAVMods
 
         void SpawnHydra(UIMenu menu)
         {
-            var newitem = new UIMenuItem("Hydra", "Создать Hydra" /*createHydra*/);
+            var newitem = new UIMenuItem("Hydra", "Создать Hydra");
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
-                    //createHydra = checked_;
                     CreateHydra.Spawn();
-
                 }
             };
         }
 
         void SpawnHydraWithPilot(UIMenu menu)
         {
-            var newitem = new UIMenuItem("Hydra With Pilot", "SpawnHydraWithPilot" /*hydraWithPilot*/);
+            var newitem = new UIMenuItem("Hydra With Pilot", "SpawnHydraWithPilot");
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
                     HydraWithPilot.Spawn();
-                    //hydraWithPilot = checked_;
-
                 }
             };
         }
 
         void SpawnDriverInCar(UIMenu menu)
         {
-            var newitem = new UIMenuItem("DriverInCar", "SpawnDriverInCar"/*driverInCar*/);
+            var newitem = new UIMenuItem("DriverInCar", "SpawnDriverInCar");
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
-                    //driverInCar = checked_;
                     DriverInCar.Spawn();
-
                 }
             };
         }
 
         void SpawnKillers(UIMenu menu)
         {
-            var newitem = new UIMenuItem("~y~Killers", "SpawnKillers"/*killers*/);
+            var newitem = new UIMenuItem("~y~Killers", "SpawnKillers");
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
                     Killers.Spawn();
-                    //killers = checked_;
-
                 }
             };
         }
 
         void ScriptTutorial_CreateDogs(UIMenu menu)
         {
-            var newitem = new UIMenuItem("CreateDogs", "Create Dogs"/*scriptTutorial_CreateDogs*/);
+            var newitem = new UIMenuItem("CreateDogs", "Create Dogs");
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
                     CH.HPeds.Dogs(true);
-                    //scriptTutorial_CreateDogs = checked_;
-
                 }
             };
         }
 
         void ScriptTutorial_KilleDogs(UIMenu menu)
         {
-            var newitem = new UIMenuItem("KilleDogs", "Kille Dogs"/*scriptTutorial_KilleDogs*/);
+            var newitem = new UIMenuItem("KilleDogs", "Kille Dogs");
             menu.AddItem(newitem);
             menu.OnItemSelect += (sender, item, checked_) =>
             {
                 if (item == newitem)
                 {
                     CH.HPeds.Dogs(false);
-                    //scriptTutorial_KilleDogs = true;
-
                 }
             };
         }
