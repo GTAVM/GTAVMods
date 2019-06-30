@@ -6,23 +6,6 @@ namespace GTAVMods
 {
 	public class Menu : Script
 	{
-		#region variable comments
-		//public bool scriptTutorial_CreateDogs;
-		//public bool scriptTutorial_KilleDogs;
-		//public bool driverInCar;
-		//public bool tuningDubsta;
-		//public bool killers;
-		//public bool killersComon;
-		//public bool createHydra;
-		//public bool hydraWithPilot;
-		//public bool crazyChristmasTogle;
-		//public bool cordReporter = false;
-		//public bool driveToWapointPosition;
-		//public bool cruise;
-		//public bool repair;
-		#endregion
-
-		public bool visibility;
         const string ModName = "GTAVMods";
 
         public Menu()
@@ -71,7 +54,7 @@ namespace GTAVMods
 
 		public void Visibility(UIMenu menu)
 		{
-			var newitem = new UIMenuCheckboxItem("ChangeVisibility", visibility);
+			var newitem = new UIMenuCheckboxItem("ChangeVisibility", false);
 			menu.AddItem(newitem);
 			menu.OnCheckboxChange += (sender, item, checked_) =>
 			{
