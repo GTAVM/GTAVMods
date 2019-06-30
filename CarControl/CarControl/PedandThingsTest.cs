@@ -197,22 +197,7 @@ namespace KurumaTest
 
                 //	break;
                 #endregion
-                case Keys.J:
-                    //Create vehicle (Phoenix)                    
-                    HVehicles.CreateVehicle(VehicleHash.Phoenix);
-                    break;
-
-                #region case Keys.O:
-                case Keys.O:
-
-                    HPeds.SpawnCompanionPed();
-                    break;
-                #endregion
-
-                case Keys.U:
-
-                    CH.HPeds.SpawnEnemyPed();
-                    break;
+                      
             }
 
         }
