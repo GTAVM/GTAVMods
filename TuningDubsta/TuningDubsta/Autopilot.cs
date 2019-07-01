@@ -36,7 +36,7 @@ namespace TuningDubsta
             if (_toggleCruise && Checks.IsTuningDubsta()) UI.Notify("Cruise:~g~ On...");
 
             if (_onTheHandbrake) UI.ShowSubtitle("~g~Waypoint position is reached\n" +
-                                                "~r~~h~>>!<<~h~~y~ The car is on the handbrake ~r~~h~>>!<<\n" +
+                                                "~r~~h~!~h~~y~ The car is on the handbrake ~r~~h~!\n" +
                 "~h~~w~Turn off the 'Drive to' to remove from the parking brake", 1000);
 
             if (_toggleDriveTo && Checks.IsTuningDubsta())
