@@ -63,7 +63,7 @@
       <Project>{1573e5fa-0ccb-4469-a32a-08f0a34fc9cf}</Project>
       <Name>CH</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NativeUI-1.7\NativeUI.csproj">
+    <ProjectReference Include="..\..\NativeUI-1.9.1\NativeUI\NativeUI.csproj">
       <Project>{f3e16ed9-dbf7-4e7b-b04b-9b24b11891d3}</Project>
       <Name>NativeUI</Name>
     </ProjectReference>
