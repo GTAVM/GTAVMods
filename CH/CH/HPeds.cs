@@ -13,6 +13,18 @@ namespace CH
     {
         static int countCompanions = 0;
 
+        public static void ChangePlayerModel(PedHash pedHash)
+        {
+            Model characterModel = new Model(pedHash);
+            characterModel.Request(500);
+            if (characterModel.IsInCdImage && characterModel.IsValid)
+            {
+                while (!characterModel.IsLoaded) Script.Wait(100);
+                Function.Call(Hash.SET_PLAYER_MODEL, Game.Player, characterModel.Hash);
+                Function.Call(Hash.SET_PED_DEFAULT_COMPONENT_VARIATION, Game.Player.Character.Handle);
+            }
+        }
+
         public  static void SpawnCompanionPed(string model_name = "csb_stripper_02")
         {
             //Spawn the model

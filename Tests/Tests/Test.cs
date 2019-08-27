@@ -19,15 +19,19 @@ namespace Tests
 
         void OnKeyDown(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyCode == Keys.Home)
             {
-                CH.HWorld.IncreaseWaves();
+                //Game.Player.Character.Health = -1;
+                //Game.Player.ChangeModel(new Model(PedHash.Rat));
+                //CH.HWorld.IncreaseWaves();
                 UI.Notify(@"Pressed Key: Nome");
             }
 
             if (e.KeyCode == Keys.End)
             {
-                CH.HWorld.ReduceWaves();
+                //Game.Player.ChangeModel(new Model(PedHash.Trevor));
+                //CH.HWorld.ReduceWaves();
                 UI.Notify("Pressed Key: End");
             }
         }
