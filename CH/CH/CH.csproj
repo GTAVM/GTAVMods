@@ -55,6 +55,9 @@
     <Compile Include="Vector3XmlSerializer.cs" />
     <Compile Include="HVehicles.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SET_PED_MOVEMENT_CLIPSET.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "D:\Games\Grand Theft Auto V\scripts\$(TargetFileName)"</PostBuildEvent>

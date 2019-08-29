@@ -12,6 +12,23 @@ namespace CH
     public class HPeds : Script
     {
         static int countCompanions = 0;
+        
+
+        public static void SetPedMovementClipset(Ped ped, string clipSet, bool switchOn = true)
+        {
+            if (!switchOn)
+            {
+                Function.Call(Hash.RESET_PED_MOVEMENT_CLIPSET, ped, 0.0f);
+                return;
+            }
+  
+            Function.Call(Hash.REQUEST_ANIM_SET, clipSet);
+            while (!Function.Call<bool>(Hash.HAS_ANIM_SET_LOADED, clipSet))
+            {
+                Wait(100);
+            }
+            Function.Call(Hash.SET_PED_MOVEMENT_CLIPSET, ped, clipSet);
+        }
 
         public static void ChangePlayerModel(PedHash pedHash)
         {
