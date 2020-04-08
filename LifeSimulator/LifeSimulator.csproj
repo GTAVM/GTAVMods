@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1573E5FA-0CCB-4469-A32A-08F0A34FC9CF}</ProjectGuid>
+    <ProjectGuid>{F15FFDA3-8EAB-461A-9CD3-ADC4C8A9046F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CH</RootNamespace>
-    <AssemblyName>CH</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>LifeSimulator</RootNamespace>
+    <AssemblyName>LifeSimulator</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,12 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CH">
+      <HintPath>..\CH\CH\bin\Release\CH.dll</HintPath>
+    </Reference>
     <Reference Include="ScriptHookVDotNet2">
-      <HintPath>..\..\scripthookvdotnet-2.10.9\bin\ScriptHookVDotNet2.dll</HintPath>
+      <HintPath>..\scripthookvdotnet-2.10.9\bin\ScriptHookVDotNet2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,17 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HWorld.cs" />
-    <Compile Include="HPeds.cs" />
-    <Compile Include="GetCoordinatesPlayer.cs" />
-    <Compile Include="IPL.cs" />
-    <Compile Include="Messages.cs" />
+    <Compile Include="MainScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vector3XmlSerializer.cs" />
-    <Compile Include="HVehicles.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="SET_PED_MOVEMENT_CLIPSET.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
