@@ -12,6 +12,35 @@ namespace CH
     public class HPeds : Script
     {
         static int countCompanions = 0;
+        
+
+        public static void SetPedMovementClipset(Ped ped, string clipSet, bool switchOn = true)
+        {
+            if (!switchOn)
+            {
+                Function.Call(Hash.RESET_PED_MOVEMENT_CLIPSET, ped, 0.0f);
+                return;
+            }
+  
+            Function.Call(Hash.REQUEST_ANIM_SET, clipSet);
+            while (!Function.Call<bool>(Hash.HAS_ANIM_SET_LOADED, clipSet))
+            {
+                Wait(100);
+            }
+            Function.Call(Hash.SET_PED_MOVEMENT_CLIPSET, ped, clipSet);
+        }
+
+        public static void ChangePlayerModel(PedHash pedHash)
+        {
+            Model characterModel = new Model(pedHash);
+            characterModel.Request(500);
+            if (characterModel.IsInCdImage && characterModel.IsValid)
+            {
+                while (!characterModel.IsLoaded) Script.Wait(100);
+                Function.Call(Hash.SET_PLAYER_MODEL, Game.Player, characterModel.Hash);
+                Function.Call(Hash.SET_PED_DEFAULT_COMPONENT_VARIATION, Game.Player.Character.Handle);
+            }
+        }
 
         public  static void SpawnCompanionPed(string model_name = "csb_stripper_02")
         {

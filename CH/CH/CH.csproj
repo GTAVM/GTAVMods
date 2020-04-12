@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CH</RootNamespace>
     <AssemblyName>CH</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ScriptHookVDotNet, Version=2.9.4.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\scripthookvdotnet-2.9.4\bin\SDK\ScriptHookVDotNet.dll</HintPath>
+    <Reference Include="ScriptHookVDotNet2">
+      <HintPath>..\..\scripthookvdotnet-2.10.9\bin\ScriptHookVDotNet2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,8 +55,11 @@
     <Compile Include="Vector3XmlSerializer.cs" />
     <Compile Include="HVehicles.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SET_PED_MOVEMENT_CLIPSET.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetPath)" "D:\Games\Grand Theft Auto V\scripts\$(TargetFileName)"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetPath)" "D:\Games\Grand Theft Auto V-1.0.877.1\scripts\$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
